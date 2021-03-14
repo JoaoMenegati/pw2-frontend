@@ -1,0 +1,40 @@
+body{
+    max-width: 840px;
+    max-height: 840px;
+}
+
+h1 {
+    color: #FFF;
+}
+
+.linha1 {
+    float: inline-start;
+}
+
+.linha_nave {
+    margin-top: 600px;
+    margin-left: 400px;
+}
+
+#covid1 {
+    margin-right: 80px;
+}
+
+#covid2 {
+    margin-right: 80px;
+}
+
+#covid3 {
+    margin-right: 80px;
+}
+
+#covid4 {
+    margin-right: 80px;
+}
+
+#covid5 {
+    margin-right: 80px;
+}
+
+#covid6 {
+}
