@@ -1,39 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Questionario } from './components';
-
-const API_URL = 'https://opentdb.com/api.php?amount=10&category=14&difficulty=easy&type=multiple';
+import React from "react";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import Login from './Login';
+import Quiz from './Fase1';
+import Cadastro from './Cadastro';
 
 function App() {
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestions] = useState(undefined);
-
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestions(data.results);
-        setCurrentQuestions(data.results[0]);
-      })
-  }, []);
-
-  const handleAnswer = (answer) => {
-    //verificar a questão
-    
-    //mostrar próxima questão
-
-    //aumentar pontuação se acertar
-  };
-
-  return (questions.length > 0 ? (
-    <div className="container">
-      {currentQuestion && (
-        <Questionario data={currentQuestion}
-        handleAnswer={handleAnswer} />
-      )}
-    </div>
-  ) : (
-    <h2 className="text-2xl text-white font-bold">Carregando Questões...</h2>
-  )
+  return (
+    <Router>
+      <Route path="/" exact component={Login}/>
+      <Route path="/quiz" exact component={Quiz}/>
+      <Route path="/cadastro" exact component={Cadastro}/>
+    </Router>
   );
 }
 
