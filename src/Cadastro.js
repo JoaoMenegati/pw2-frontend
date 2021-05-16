@@ -6,10 +6,13 @@ function Cadastro() {
   return (
     <div className="Cadastro">
         <div className="container">
-        <a href="../index.html" className="btn btn-primary btn-lg btn-block">Inicio</a>
+            <Link to="/">
+                <button className="btn btn-lg btn-primary btn-block">Home</button>
+            </Link>
         </div>
-        <hr className="mb-4"/>
 
+        <hr className="mb-4"/>
+        Inicio
         <div className="container">
         <div className="col-md-8 order-md-1">
             <h4 className="mb-3">Cadastro</h4>
@@ -46,13 +49,6 @@ function Cadastro() {
                 <div className="invalid-feedback" >
                     A senha é obrigatória.
                 </div>
-                </div>
-            </div>
-            <div className="mb-3">
-                <label for="email">Email <span className="text-muted">(Opicional)</span></label>
-                <input type="email" className="form-control" id="email" placeholder="exemplo@exemplo.com"/>
-                <div className="invalid-feedback">
-                Por favor entre com um Email válido.
                 </div>
             </div>
             <hr className="mb-4"/>

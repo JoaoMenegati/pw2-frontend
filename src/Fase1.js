@@ -3,7 +3,7 @@ import { Questionario } from './components';
 
 const API_URL = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
-function App() {
+function Fase1() {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -57,4 +57,4 @@ function App() {
     );
 }
 
-export default App;
+export default Fase1;
