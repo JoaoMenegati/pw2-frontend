@@ -1,5 +1,6 @@
 import './css/bootstrap.min.css';
 import './css/form-validation.css';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
 
 function Cadastro() {
   return (

@@ -1,37 +1,60 @@
-import virus from './img/virus.png'
-import nave from './img/alcohol.png'
-import './css/bootstrap.min.css';
-import './css/fase1.css';
+import React, { useState, useEffect } from "react";
+import { Questionario } from './components';
 
-function Fase1() {
-  return (
-    <div className="Fase1">
-        <div class="linha1">
-            <div id="covid1" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-            <div id="covid2" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-            <div id="covid3" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-            <div id="covid4" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-            <div id="covid5" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-            <div id="covid6" class="linha1">
-                <img class="mb-4" src={virus} alt="" width="72" height="72"/>
-            </div>
-        </div>
-        <hr class="mb-4"/>
-        <div class="linha_nave">
-            <img class="mb-4" src={nave} alt="" width="72" height="72"/>
-        </div>
-    </div>
-  );
+const API_URL = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
+
+function App() {
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showAnswers, setShowAnswers] = useState(false);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        const questions = data.results.map((question) => ({
+          ...question,
+          answers: [
+            question.correct_answer,
+            ...question.incorrect_answers
+          ].sort(() => Math.random() - 0.5)
+        }))
+
+        setQuestions(questions);
+      })
+  }, []);
+
+  const handleAnswer = (answer) => {  
+    if(!showAnswers){
+      if(answer === questions[currentIndex].correct_answer){
+        //Aumenta a pontuação
+        setScore(score + 1);
+      }
+    }
+
+    setShowAnswers(true);
+  };
+
+  const handleNextQuestion = () => {
+    setCurrentIndex(currentIndex + 1);
+    setShowAnswers(false);
+  }
+
+  return questions.length > 0 ? (
+      <div className="container">
+        {currentIndex >= questions.length ? (
+          <h1 className="text-3xl text-white font-bold">Sua pontuação e: {score}.</h1>
+        ) : (
+          <Questionario data={questions[currentIndex]}
+          showAnswers={showAnswers}
+          handleNextQuestion={handleNextQuestion}
+          handleAnswer={handleAnswer} />
+        )}
+      </div>
+    ) : (
+      <h2 className="text-2xl text-white font-bold">Carregando Questões...</h2>
+    );
 }
 
-export default Fase1;
+export default App;
