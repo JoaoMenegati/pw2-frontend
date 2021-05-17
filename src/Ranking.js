@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import api from './Api';
 
 function Ranking() {
   return (

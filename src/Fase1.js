@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Questionario } from './components';
+import axios from 'axios';
 
 const API_URL = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
@@ -10,8 +11,8 @@ function Fase1() {
   const [showAnswers, setShowAnswers] = useState(false);
 
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
+    axios.get(API_URL)
+      .then(response => response.data)
       .then((data) => {
         const questions = data.results.map((question) => ({
           ...question,
