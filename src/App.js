@@ -9,11 +9,13 @@ import Ranking from './Ranking';
 function App() {
   return (
     <Router>
-      <Route path="/" exact component={Login}/>
-      <Route path="/quiz" exact component={Quiz}/>
-      <Route path="/cadastro" exact component={Cadastro}/>
-      <Route path="/inicio" exact component={Inicio}/>
-      <Route path="/ranking" exact component={Ranking}/>
+      <Switch>
+        <Route path="/" exact component={Login}/>
+        <Route path="/quiz" exact component={Quiz}/>
+        <Route path="/cadastro" exact component={Cadastro}/>
+        <Route path="/inicio" exact component={Inicio}/>
+        <Route path="/ranking" exact component={Ranking}/>
+      </Switch>
     </Router>
   );
 }
