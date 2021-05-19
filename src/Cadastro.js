@@ -50,8 +50,11 @@ class Cadastro extends React.Component {
         console.log(this.state.user);
 
         api.post('/user/signup', this.state.user).then(response => {
-            console.log(response.status);
-            console.log(response.message);
+            if(response.status === 200){
+                this.props.history.push('/');
+            }else{
+                alert("Falha ao cadastrar usuário!");
+            }
         })
     
     }
@@ -69,7 +72,7 @@ class Cadastro extends React.Component {
         <div className="container">
         <div className="col-md-8 order-md-1">
             <h4 className="mb-3">Cadastro</h4>
-            <form className="needs-validation" novalidate>
+            {/* <form className="needs-validation" novalidate> */}
             <div className="row">
                 <div className="col-md-6 mb-3">
                 <label>Nome</label>
@@ -106,7 +109,7 @@ class Cadastro extends React.Component {
             </div>
             <hr className="mb-4"/>
             <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={this.handleButtonClicked.bind(this)}>Cadastrar</button>
-            </form>
+            {/* </form> */}
         </div>
         </div>
     </div>

@@ -3,7 +3,8 @@ import './css/bootstrap.min.css';
 import './css/signin.css';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import api from './Api';
-import Inicio from './Inicio';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class Login extends React.Component {
   handleUsuarioChanged(event) {
     var user   = this.state.user;
     user.login = event.target.value;
+    cookies.set('login', user.login, { path: '/' });
 
     this.setState({ user: user });
   }
@@ -35,20 +37,24 @@ class Login extends React.Component {
     console.log(this.state.user);
 
     api.post('/user/signin', this.state.user).then(response => {
-      if(response.status === "200"){
-
+      if(response.status === 200){
+        this.props.history.push('/inicio');
+      }else{
+        alert("Usuário não cadastrado ou senha incorreta!")
       }
-
-      console.log(response.status);
-      console.log(response.message);
     })
     
   }
 
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer) {
+      return <Redirect to="/Inicio" />
+    }
+
     return (
       <div className="Login">
-        <form className="form-signin">
+        {/* <form className="form-signin"> */}
           <h1 className="h3 mb-4 font-weight-normal">Login</h1>
           <label>Usuário</label>
           <input type="text" id="user" className="form-control mb-4" placeholder="Seu usuário" required value={this.state.user.login} onChange={this.handleUsuarioChanged.bind(this)}/>
@@ -59,14 +65,14 @@ class Login extends React.Component {
               <input type="checkbox" value="remember-me" /> Manter Login
             </label>
           </div>
-          <Link to="/inicio">
+          {/* <Link to="/inicio"> */}
             <button className="mr-4 btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleButtonClicked.bind(this)}>Entrar</button>
-          </Link>
+          {/* </Link> */}
           <Link to="/cadastro">
             <button className="btn btn-lg btn-primary btn-block">Cadastrar-se</button>
           </Link>
           <p className="mt-5 mb-3 text-muted">&copy; 2021-2021</p>
-        </form>
+        {/* </form> */}
       </div>
     );
   }

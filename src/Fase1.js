@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Questionario } from './components';
-import axios from 'axios';
+import Niveis from './Niveis';
+import api from './Api';
+import { Redirect } from "react-router";
 
 const API_URL = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
@@ -9,26 +11,35 @@ function Fase1() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showAnswers, setShowAnswers] = useState(false);
+  const [dificuldade, setDificuldade] = useState(0);
+  const [jogando, setJogando] = useState(false);
 
+  
   useEffect(() => {
-    axios.get(API_URL)
+    api.get("/question/find")
       .then(response => response.data)
       .then((data) => {
         const questions = data.results.map((question) => ({
           ...question,
           answers: [
-            question.correct_answer,
-            ...question.incorrect_answers
+            question.correctAnswer,
+            ...question.incorrectAnswers.slice(0, dificuldade)
           ].sort(() => Math.random() - 0.5)
         }))
 
         setQuestions(questions);
+        // setJogando(false);
       })
   }, []);
 
+  const handleDificuldade = (nivel) =>{
+    setDificuldade(nivel); 
+    setJogando(true);
+  }
+
   const handleAnswer = (answer) => {  
     if(!showAnswers){
-      if(answer === questions[currentIndex].correct_answer){
+      if(answer === questions[currentIndex].correctAnswer){
         //Aumenta a pontuação
         setScore(score + 1);
       }
@@ -42,7 +53,7 @@ function Fase1() {
     setShowAnswers(false);
   }
 
-  return questions.length > 0 ? (
+  return questions.length > 0 && dificuldade > 0 ? (
       <div className="container">
         {currentIndex >= questions.length ? (
           <h1 className="text-3xl text-white font-bold">Sua pontuação e: {score}.</h1>
@@ -54,7 +65,12 @@ function Fase1() {
         )}
       </div>
     ) : (
-      <h2 className="text-2xl text-white font-bold">Carregando Questões...</h2>
+      !jogando ? (
+        <Niveis 
+        handleDificuldade={handleDificuldade}/>
+      ) : (
+        <h2 className="text-2xl text-white font-bold">Carregando Questões...</h2>
+      )
     );
 }
 

@@ -11,8 +11,8 @@ const Button = ({ answer, className }) => (
 const Questionario = ({
     showAnswers, 
     handleAnswer, 
-    handleNextQuestion, 
-    data: { question, correct_answer, answers } 
+    handleNextQuestion,
+    data: { question, correctAnswer, answers } 
 }) => {
 
     return (
@@ -26,7 +26,7 @@ const Questionario = ({
             <div className="grid grid-cols-2 gap-6 mt-6">
                 {answers.map((answer, idx) => {
                     const textColor = showAnswers ? 
-                    answer === correct_answer ? 
+                    answer === correctAnswer ? 
                     "text-green-500" : 
                     "text-red-500" : 
                     "text-blue-800";
