@@ -13,7 +13,8 @@ class Cadastro extends React.Component {
             login: props.usuario,
             password: props.senha,
             name: props.name,
-            surname: props.surname
+            surname: props.surname,
+            admin: false,
           }
         }
       }

@@ -30,15 +30,12 @@ const Questionario = ({
                     "text-green-500" : 
                     "text-red-500" : 
                     "text-blue-800";
-                    
-                    // const textColor = showAnswers ? 
-                    // "text-white" : "text-blue-800"
 
                     return (
                     <button
                         key={idx}
                         className={`bg-white p-4 ${textColor}
-                        font-semibold rounded shadow`}
+                        font-semibold rounded shadow `}
                         onClick={() => handleAnswer
                         (answer)}
                         dangerouslySetInnerHTML={{

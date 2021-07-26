@@ -38,7 +38,11 @@ class Login extends React.Component {
 
     api.post('/user/signin', this.state.user).then(response => {
       if(response.status === 200){
-        this.props.history.push('/inicio');
+        if (this.state.user.login === "admin"){
+          this.props.history.push('/inicioadm');
+        }else{
+          this.props.history.push('/inicio');
+        }
       }else{
         alert("Usuário não cadastrado ou senha incorreta!")
       }
@@ -68,9 +72,6 @@ class Login extends React.Component {
           {/* <Link to="/inicio"> */}
             <button className="mr-4 btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleButtonClicked.bind(this)}>Entrar</button>
           {/* </Link> */}
-          <Link to="/cadastro">
-            <button className="btn btn-lg btn-primary btn-block">Cadastrar-se</button>
-          </Link>
           <p className="mt-5 mb-3 text-muted">&copy; 2021-2021</p>
         {/* </form> */}
       </div>

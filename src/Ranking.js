@@ -17,8 +17,20 @@ class Ranking extends Component {
 
   renderTableData() {
     const { ranking } = this.state;
+
+    ranking.sort(function (a, b) {
+      if (a.points < b.points) {
+        return 1;
+      }
+      if (a.points > b.points) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+
     return ranking.map((user, index) => {
-      const { name, surname, login, points} = user //destructuring
+      const { name, surname, login, points } = user //destructuring
       return (
         <tr key={login}>
           <td>{name}</td>
@@ -47,7 +59,7 @@ class Ranking extends Component {
               <th>Pontos</th>
             </tr>
           </thead>
-          <tbody>            
+          <tbody>
             {this.renderTableData()}
           </tbody>
         </table>
