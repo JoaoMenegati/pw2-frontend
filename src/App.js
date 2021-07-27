@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Login from './pages/login/Login';
+import Cadastro from './pages/cadastro/Cadastro';
 import Quiz from './Fase1';
-import Cadastro from './Cadastro';
 import Inicio from './Inicio';
 import InicioAdm from './InicioAdm';
 import Ranking from './Ranking';
