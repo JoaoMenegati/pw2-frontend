@@ -11,7 +11,10 @@ function InicioAdm() {
           <button className="mr-4 btn btn-lg btn-primary btn-block">Ranking</button>
         </Link>
         <Link to="/cadastro">
-            <button className="btn btn-lg btn-primary btn-block">Cadastrar Usuários</button>
+            <button className="mr-4 btn btn-lg btn-primary btn-block">Cadastrar Usuários</button>
+        </Link>
+        <Link to="/bancoquestoes">
+            <button className="btn btn-lg btn-primary btn-block">Banco de Questões</button>
         </Link>
     </div>
   );
