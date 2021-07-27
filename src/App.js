@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
-import Login from './Login';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Login from './pages/login/Login';
 import Quiz from './Fase1';
 import Cadastro from './Cadastro';
 import Inicio from './Inicio';

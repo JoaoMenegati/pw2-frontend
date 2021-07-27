@@ -12,3 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.formFieldInvalid {
+  color: #f00;
+    margin-bottom: 8px;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  display: block;
+}
