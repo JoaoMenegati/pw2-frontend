@@ -6,7 +6,7 @@ import Quiz from './Fase1';
 import Inicio from './Inicio';
 import InicioAdm from './InicioAdm';
 import Ranking from './Ranking';
-import BancoQuestoes from './BancoQuestoes';
+import BancoQuestoes from './pages/bancoquestoes/BancoQuestoes';
 
 function App() {
   return (

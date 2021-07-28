@@ -22,7 +22,7 @@ const Cadastro = () => {
       .post("/user/signup", values)
       .then((response) => {
         if (response.status === 200) {
-          history.push("/");
+          history.push("/inicioadm");
         } else {
           alert("Falha ao cadastrar usuário!");
         }
@@ -37,7 +37,7 @@ const Cadastro = () => {
       <div className="container">
         <Breadcrumb>
           <BreadcrumbItem>
-            <Link to="/">Início</Link>
+            <Link to="/inicioadm">Início</Link>
           </BreadcrumbItem>
           <BreadcrumbItem active>Cadastro</BreadcrumbItem>
         </Breadcrumb>
