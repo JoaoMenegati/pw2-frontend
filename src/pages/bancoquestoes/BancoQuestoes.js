@@ -29,8 +29,8 @@ class BancoQuestoes extends React.Component {
                <td className="cell100 column3">{incorrectAnswers[1]}</td>
                <td className="cell100 column4">{incorrectAnswers[2]}</td>
                <td className="cell100 column5">{incorrectAnswers[3]}</td>
-               <td className="cell100 column6">{dificulty}</td>
-               <td className="cell100 column7"><a href="#">Editar</a></td>
+               <td className="cell100 column6">{(dificulty === 1) ? 'Fácil' : (dificulty === 2) ? 'Médio' : 'Díficil'}</td>
+               <td className="cell100 column7"><Link to="/editarquestoes">Editar</Link></td>
             </tr>
          )
       })

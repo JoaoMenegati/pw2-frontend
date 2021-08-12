@@ -7,6 +7,7 @@ import Inicio from './Inicio';
 import InicioAdm from './InicioAdm';
 import Ranking from './Ranking';
 import BancoQuestoes from './pages/bancoquestoes/BancoQuestoes';
+import EditarQuestoes from './pages/editarquestoes/EditarQuestoes';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/inicioadm" exact component={InicioAdm}/>
         <Route path="/ranking" exact component={Ranking}/>
         <Route path="/bancoquestoes" exact component={BancoQuestoes}/>
+        <Route path="/editarquestoes" exact component={EditarQuestoes}/>
       </Switch>
     </Router>
   );
