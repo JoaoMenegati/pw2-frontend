@@ -17,17 +17,16 @@ function Fase1() {
   const [nivel, setNivel] = useState(0);
   const [jogando, setJogando] = useState(false);
   const login = cookies.get('login');
-
-
   useEffect(() => {
-    api.get("/question/find")
+    api.get("/question/find", {params: {dificulty: (dificuldade - 1)}})
       .then(response => response.data)
       .then((data) => {
         const questions = data.results.map((question) => ({
           ...question,
           answers: [
             question.correctAnswer,
-            ...question.incorrectAnswers.slice(0, dificuldade)
+            ...question.incorrectAnswers.slice(0, dificuldade),
+            question.dificulty
           ].sort(() => Math.random() - 0.5)
         }))
 

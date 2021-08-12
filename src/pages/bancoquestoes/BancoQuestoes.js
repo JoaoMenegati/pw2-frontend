@@ -21,15 +21,16 @@ class BancoQuestoes extends React.Component {
       const { banco_Questoes } = this.state;
 
       return banco_Questoes.map((results, index) => {
-         const { question, correctAnswer, incorrectAnswers } = results //destructuring
+         const { question, correctAnswer, incorrectAnswers, dificulty } = results //destructuring
          return (
-            <tr key={question}>
-               <td>{question}</td>
-               <td>{correctAnswer}</td>
-               <td>{incorrectAnswers[1]}</td>
-               <td>{incorrectAnswers[2]}</td>
-               <td>{incorrectAnswers[3]}</td>
-               <td><a href="#">Editar</a></td>
+            <tr className="row100 body" key={question}>
+               <td className="cell100 column1">{question}</td>
+               <td className="cell100 column2">{correctAnswer}</td>
+               <td className="cell100 column3">{incorrectAnswers[1]}</td>
+               <td className="cell100 column4">{incorrectAnswers[2]}</td>
+               <td className="cell100 column5">{incorrectAnswers[3]}</td>
+               <td className="cell100 column6">{dificulty}</td>
+               <td className="cell100 column7"><a href="#">Editar</a></td>
             </tr>
          )
       })
@@ -47,27 +48,39 @@ class BancoQuestoes extends React.Component {
                </Breadcrumb>
             </div>
             <hr className="mb-4" />
-            
-               <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                  <table className="table table-success table-bordered table-striped table-hover mb-0">
-                     <thead>
-                        <tr>
-                           <th>Questão</th>
-                           <th>Questão Correta</th>
-                           <th>Questão Incorreta 1</th>
-                           <th>Questão Incorreta 2</th>
-                           <th>Questão Incorreta 3</th>
-                           <th>Editar</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        {this.renderTableData()}
-                     </tbody>
-                  </table>
+            <div className="limiter">
+               <div className="container-table100">
+                  <div className="wrap-table100">
+                     <div className="table100 ver1 m-b-110">
+                        <div className="table100-head">
+                           <table>
+                              <thead>
+                                 <tr className="row100 head">
+                                    <th className="cell100 column1">Questão</th>
+                                    <th className="cell100 column2">Questão Correta</th>
+                                    <th className="cell100 column3">Questão Incorreta 1</th>
+                                    <th className="cell100 column4">Questão Incorreta 2</th>
+                                    <th className="cell100 column5">Questão Incorreta 3</th>
+                                    <th className="cell100 column6">Dificuldade</th>
+                                    <th className="cell100 column7">Editar</th>
+                                 </tr>
+                              </thead>
+                           </table>
+                        </div>
+                        <div className="table100-body js-pscroll">
+                           <table>
+                              <tbody>
+
+                                 {this.renderTableData()}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
                </div>
-            
+            </div>
          </div>
-      );
+      ); 
    }
 }
 
