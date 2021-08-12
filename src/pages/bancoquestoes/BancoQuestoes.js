@@ -67,7 +67,7 @@ class BancoQuestoes extends React.Component {
                               </thead>
                            </table>
                         </div>
-                        <div className="table100-body js-pscroll">
+                        <div className="table100-body">
                            <table>
                               <tbody>
 
