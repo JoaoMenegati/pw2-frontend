@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
@@ -10,6 +10,22 @@ import "../../css/form-validation.css";
 import api from "../../Api";
 
 const EditarQuestoes = () => {
+  const [currentQuestion, setCurrentQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    api.get("/question/findAll")
+    .then(response => response.data)
+    .then(data => data.results)
+    .then(results =>{
+      setCurrentQuestions(results[id]);
+      setQuestions(results);
+    })
+    console.log(questions);
+  }, []);
+
   const history = useHistory();
   const {
     register,
@@ -32,7 +48,7 @@ const EditarQuestoes = () => {
       });
   };
 
-  return (
+  return questions.length > 0 ? (
     <div className="Cadastro">
       <div className="container">
         <Breadcrumb>
@@ -44,74 +60,112 @@ const EditarQuestoes = () => {
       </div>
 
       <hr className="mb-4" />
-      <div className="container">
+      <div className="container-xl">
         <div className="col-12 order-md-1">
           <h4 className="mb-3">Questão</h4>
 
           <form className="needs-validation" onSubmit={handleSubmit(onSubmit)}>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label>Nome</label>
+            <div className="row mb-3">
+              <label>Questão</label>
+              <div className="input-group">
                 <input
                   type="text"
                   className="form-control"
-                  {...register("name", { required: true })}
+                  {...register("question", { required: true })}
+                  {...console.log(currentQuestion)}
+                  {...console.log(currentQuestion.question)}
+                  value = {currentQuestion.question}
                 />
-                {errors.name && (
-                  <div className="formFieldInvalid">O Nome e obrigatório.</div>
+                {errors.question && (
+                  <div className="formFieldInvalid">A questão é obrigatória.</div>
                 )}
               </div>
-              <div className="col-md-6 mb-3">
-                <label>Sobrenome</label>
+            </div>
+            <div className="row mb-3">
+              <label>Questão Correta</label>
+              <div className="input-group">
                 <input
                   type="text"
                   className="form-control"
-                  {...register("surname", { required: true })}
+                  {...register("correctAnswer", { required: true })}
+                  value = {currentQuestion.correctAnswer}
                 />
-                {errors.surname && (
+                {errors.correctAnswer && (
                   <div className="formFieldInvalid">
-                    O Sobrenome e obrigatório.
+                    A questão correta e obrigatória.
                   </div>
                 )}
               </div>
             </div>
-            <div className="mb-3">
-              <label>Nome de usuário</label>
+            <div className="row mb-3">
+              <label>Questão incorreta 1</label>
               <div className="input-group">
                 <input
                   type="text"
                   className="form-control"
-                  {...register("login", { required: true })}
+                  {...register("incorrectAnswer1", { required: true })}
+                  value = {currentQuestion.incorrectAnswers[0]}
                 />
               </div>
-              {errors.login && (
-                <div className="formFieldInvalid">O usuário e obrigatório.</div>
+              {errors.incorrectAnswer1 && (
+                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
-            <div className="mb-3">
-              <label>Senha</label>
+            <div className="row mb-3">
+              <label>Questão incorreta 2</label>
               <div className="input-group">
                 <input
-                  type="password"
                   className="form-control"
-                  {...register("password", { required: true })}
+                  {...register("incorrectAnswer2", { required: true })}
+                  value = {currentQuestion.incorrectAnswers[1]}
                 />
               </div>
 
-              {errors.password && (
-                <div className="formFieldInvalid">A senha é obrigatória.</div>
+              {errors.incorrectAnswer2 && (
+                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
+              )}
+            </div>
+            <div className="row mb-3">
+              <label>Questão incorreta 3</label>
+              <div className="input-group">
+                <input
+                  className="form-control"
+                  {...register("incorrectAnswer3", { required: true })}
+                  value = {currentQuestion.incorrectAnswers[2]}
+                />
+              </div>
+
+              {errors.incorrectAnswer3 && (
+                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
+              )}
+            </div>
+            <div className="row mb-3">
+              <label>Questão incorreta 4</label>
+              <div className="input-group">
+                <input
+                  className="form-control"
+                  {...register("incorrectAnswer4", { required: true })}
+                  value = {currentQuestion.incorrectAnswers[3]}
+                />
+              </div>
+
+              {errors.incorrectAnswer4 && (
+                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
 
             <hr className="mb-4" />
             <button className="btn btn-primary btn-lg btn-block" type="submit">
-              Cadastrar
+              Atualizar
             </button>
           </form>
         </div>
       </div>
     </div>
-  );
+  ) :
+    (
+      <h2 className="text-2xl text-white font-bold">Carregando Questões...</h2>
+    );
 };
 
 export default EditarQuestoes;

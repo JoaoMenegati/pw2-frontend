@@ -20,7 +20,7 @@ function App() {
         <Route path="/inicioadm" exact component={InicioAdm}/>
         <Route path="/ranking" exact component={Ranking}/>
         <Route path="/bancoquestoes" exact component={BancoQuestoes}/>
-        <Route path="/editarquestoes" exact component={EditarQuestoes}/>
+        <Route path="/editarquestoes/:id" exact component={EditarQuestoes}/>
       </Switch>
     </Router>
   );

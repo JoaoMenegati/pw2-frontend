@@ -9,7 +9,7 @@ import api from '../../Api';
 
 class BancoQuestoes extends React.Component {
    state = {
-      banco_Questoes: [],
+      banco_Questoes: []
    }
 
    async componentDidMount() {
@@ -17,11 +17,18 @@ class BancoQuestoes extends React.Component {
       this.setState({ banco_Questoes: response.data.results });
    }
 
+   handleClick(){
+      const { banco_Questoes } = this.state;
+      //this.setState({questions: banco_Questoes});
+   }
+
    renderTableData() {
       const { banco_Questoes } = this.state;
 
       return banco_Questoes.map((results, index) => {
          const { question, correctAnswer, incorrectAnswers, dificulty } = results //destructuring
+         let stringData = "teste"
+         
          return (
             <tr className="row100 body" key={question}>
                <td className="cell100 column1">{question}</td>
@@ -30,7 +37,7 @@ class BancoQuestoes extends React.Component {
                <td className="cell100 column4">{incorrectAnswers[2]}</td>
                <td className="cell100 column5">{incorrectAnswers[3]}</td>
                <td className="cell100 column6">{(dificulty === 1) ? 'Fácil' : (dificulty === 2) ? 'Médio' : 'Díficil'}</td>
-               <td className="cell100 column7"><Link to="/editarquestoes">Editar</Link></td>
+               <td className="cell100 column7"><Link to={'/editarquestoes/'+ index}>Editar</Link></td>
             </tr>
          )
       })
