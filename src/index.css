@@ -22,3 +22,42 @@ form button[type="submit"] {
   width: 100%;
   display: block;
 }
+
+.text-opacity-60 {
+  opacity: 0.6;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.card-grid a {
+  text-decoration: none;
+  display: block;
+}
+
+
+.card-container {
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: grid;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  min-height: 200px;
+  transition: all 0.3s ease;
+}
+
+.card-container:hover {
+  background-color: var(--bs-primary);
+  box-shadow: 0px 0px 0px 5px var(--bs-primary);
+}
+
+.card-container .card-icon {
+  font-size: 66px;
+}

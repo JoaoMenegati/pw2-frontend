@@ -9,6 +9,7 @@ import "../../css/bootstrap.min.css";
 import "../../css/signin.css";
 
 import api from "../../Api";
+import { Link } from 'react-router-dom';
 
 
 const cookies = new Cookies();
@@ -60,6 +61,9 @@ const Login = () => {
         <div className="mb-4" />
 
         <Button color="primary" size="lg" type="submit" block>Entrar</Button>
+
+        <div className="mb-4" />
+        <Link to="/cadastro">Não possui conta? cadastrar!</Link>
       </form>
     </div>
   );

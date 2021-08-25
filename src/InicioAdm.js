@@ -1,21 +1,42 @@
-import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function InicioAdm() {
   return (
     <div>
-        <h1 className="text-3xl text-white font-bold">Bem vindo ao GameQuiz do Covid!</h1>
-        <Link to="/quiz">
-          <button className="mr-4 btn btn-lg btn-primary btn-block">Jogar</button>
-        </Link>
-        <Link to="/ranking">
-          <button className="mr-4 btn btn-lg btn-primary btn-block">Ranking</button>
-        </Link>
-        <Link to="/cadastro">
-            <button className="mr-4 btn btn-lg btn-primary btn-block">Cadastrar Usuários</button>
-        </Link>
-        <Link to="/bancoquestoes">
-            <button className="btn btn-lg btn-primary btn-block">Banco de Questões</button>
-        </Link>
+        <h1 className="text-4xl text-white">
+          <span className="text-opacity-60">Bem vindo ao</span><br />
+          <span className="text-5xl font-bold">GameQuiz do Covid!</span>
+        </h1>
+        
+        <div className="mt-8" />
+        
+        <div className="card-grid">
+          <Link to="/quiz">
+            <div className="card-container">
+              <span className="card-icon material-icons">play_arrow</span>
+              <span className="card-title">Jogar</span>
+            </div>
+          </Link>
+          <Link to="/ranking">
+            <div className="card-container">
+              <span className="card-icon material-icons">timeline</span>
+              <span className="card-title">Ranking</span>
+            </div>
+          </Link>
+
+          <Link to="/cadastro">
+            <div className="card-container">
+            <span className="card-icon material-icons">person_add_alt</span>
+              <span className="card-title">Cadastrar Usuários</span>
+            </div>
+          </Link>
+          <Link to="/bancoquestoes">
+            <div className="card-container">
+              <span className="card-icon material-icons">auto_stories</span>
+              <span className="card-title">Banco de Questões</span>
+            </div>
+          </Link>
+        </div>
     </div>
   );
 }
