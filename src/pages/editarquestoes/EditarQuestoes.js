@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 import "../../css/bootstrap.min.css";
-import "../../css/form-validation.css";
+import "../../css/editarquestoes.css";
 
 import api from "../../Api";
 
@@ -17,13 +17,12 @@ const EditarQuestoes = () => {
 
   useEffect(() => {
     api.get("/question/findAll")
-    .then(response => response.data)
-    .then(data => data.results)
-    .then(results =>{
-      setCurrentQuestions(results[id]);
-      setQuestions(results);
-    })
-    console.log(questions);
+      .then(response => response.data)
+      .then(data => data.results)
+      .then(results => {
+        setCurrentQuestions(results[id]);
+        setQuestions(results);
+      })
   }, []);
 
   const history = useHistory();
@@ -34,17 +33,18 @@ const EditarQuestoes = () => {
   } = useForm();
 
   const onSubmit = (values) => {
+    console.log(values);
     api
-      .post("/user/signup", values)
+      .post("/question/updateQuestions", values)
       .then((response) => {
         if (response.status === 200) {
-          history.push("/inicioadm");
+          history.push("/bancoquestoes");
         } else {
-          alert("Falha ao cadastrar usuário!");
+          alert("Falha ao atualizar questão!");
         }
       })
       .catch(() => {
-        alert("Falha ao cadastrar usuário!");
+        alert("Falha ao atualizar questão!");
       });
   };
 
@@ -72,9 +72,7 @@ const EditarQuestoes = () => {
                   type="text"
                   className="form-control"
                   {...register("question", { required: true })}
-                  {...console.log(currentQuestion)}
-                  {...console.log(currentQuestion.question)}
-                  value = {currentQuestion.question}
+                  defaultValue={currentQuestion.question}
                 />
                 {errors.question && (
                   <div className="formFieldInvalid">A questão é obrigatória.</div>
@@ -88,7 +86,7 @@ const EditarQuestoes = () => {
                   type="text"
                   className="form-control"
                   {...register("correctAnswer", { required: true })}
-                  value = {currentQuestion.correctAnswer}
+                  defaultValue={currentQuestion.correctAnswer}
                 />
                 {errors.correctAnswer && (
                   <div className="formFieldInvalid">
@@ -103,8 +101,8 @@ const EditarQuestoes = () => {
                 <input
                   type="text"
                   className="form-control"
-                  {...register("incorrectAnswer1", { required: true })}
-                  value = {currentQuestion.incorrectAnswers[0]}
+                  {...register("incorrectAnswers[0]", { required: true })}
+                  defaultValue={currentQuestion.incorrectAnswers[0]}
                 />
               </div>
               {errors.incorrectAnswer1 && (
@@ -116,8 +114,8 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswer2", { required: true })}
-                  value = {currentQuestion.incorrectAnswers[1]}
+                  {...register("incorrectAnswers[1]", { required: true })}
+                  defaultValue={currentQuestion.incorrectAnswers[1]}
                 />
               </div>
 
@@ -130,8 +128,8 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswer3", { required: true })}
-                  value = {currentQuestion.incorrectAnswers[2]}
+                  {...register("incorrectAnswers[2]", { required: true })}
+                  defaultValue={currentQuestion.incorrectAnswers[2]}
                 />
               </div>
 
@@ -144,9 +142,29 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswer4", { required: true })}
-                  value = {currentQuestion.incorrectAnswers[3]}
+                  {...register("incorrectAnswers[3]", { required: true })}
+                  defaultValue={currentQuestion.incorrectAnswers[3]}
+                  {...console.log(currentQuestion.incorrectAnswers)}
                 />
+              </div>
+
+              {errors.incorrectAnswer4 && (
+                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
+              )}
+            </div>
+            <div className="row mb-3">
+              <label>Dificuldade</label>
+              <div className="input-group">
+                <select
+                  className="form-control chosen-select"
+                  data-placeholder={currentQuestion.dificulty}
+                  {...register("dificulty", { required: true })}
+                  defaultValue={currentQuestion.dificulty}
+                >
+                  <option value="1">Fácil</option>
+                  <option value="2">Médio</option>
+                  <option value="3">Díficil</option>
+                </select>
               </div>
 
               {errors.incorrectAnswer4 && (
