@@ -168,7 +168,7 @@ const EditarQuestoes = () => {
               </div>
 
               {errors.incorrectAnswer4 && (
-                <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
+                <div className="formFieldInvalid">A dificuldade da questão e obrigatória.</div>
               )}
             </div>
 
