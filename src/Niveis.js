@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Niveis = ({
-    handleDificuldade
-}) => {
-    return(
-        <div className="container">
-            <button className="mr-4 btn btn-lg btn-primary btn-block" onClick={() => handleDificuldade(2)}>Fácil</button>
-            <button className="mr-4 btn btn-lg btn-primary btn-block" onClick={() => handleDificuldade(3)}>Médio</button>
-            <button className="mr-4 btn btn-lg btn-primary btn-block" onClick={() => handleDificuldade(4)}>Difícil</button>
+const Niveis = ({ handleDificuldade }) => {
+  return (
+    <div className="game-center">
+      <div className="card-grid col3">
+        <div className="card-container" onClick={() => handleDificuldade(2)}>
+          <span className="card-icon material-icons">self_improvement</span>
+          <span className="card-title">Fácil</span>
         </div>
-    )
-}
 
-export default Niveis
+        <div className="card-container" onClick={() => handleDificuldade(3)}>
+          <span className="card-icon material-icons">hiking</span>
+          <span className="card-title">Médio</span>
+        </div>
+
+        <div className="card-container" onClick={() => handleDificuldade(4)}>
+          <span className="card-icon material-icons">coronavirus</span>
+          <span className="card-title">Difícil</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Niveis;

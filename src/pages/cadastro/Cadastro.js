@@ -33,7 +33,7 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="Cadastro">
+    <div className="Cadastro form-center large">
       <div className="container">
         <Breadcrumb>
           <BreadcrumbItem>

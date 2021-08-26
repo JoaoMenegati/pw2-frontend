@@ -36,7 +36,7 @@ const Login = () => {
     })
   };
   return (
-    <div className="Login">
+    <div className="Login form-center">
       <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="h3 mb-4 font-weight-normal">Login</h1>
 

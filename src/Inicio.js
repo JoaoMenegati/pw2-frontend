@@ -1,15 +1,30 @@
-import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Inicio() {
   return (
-    <div>
-        <h1 className="text-3xl text-white font-bold">Bem vindo ao GameQuiz do Covid!</h1>
+    <div className="game-center">
+      <h1 className="text-4xl text-white">
+        Bem vindo ao
+        <br />
+        <span className="text-5xl font-bold">GameQuiz do Covid!</span>
+      </h1>
+
+      <div className="mt-8" />
+
+      <div className="card-grid">
         <Link to="/quiz">
-          <button className="mr-4 btn btn-lg btn-primary btn-block">Jogar</button>
+          <div className="card-container">
+            <span className="card-icon material-icons">play_arrow</span>
+            <span className="card-title">Jogar</span>
+          </div>
         </Link>
         <Link to="/ranking">
-          <button className="btn btn-lg btn-primary btn-block">Ranking</button>
+          <div className="card-container">
+            <span className="card-icon material-icons">timeline</span>
+            <span className="card-title">Ranking</span>
+          </div>
         </Link>
+      </div>
     </div>
   );
 }

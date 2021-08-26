@@ -46,11 +46,12 @@ class Ranking extends Component {
       <div className="flex flex-col">
         <div>
           <Link to="/Inicio">
-            <button className="btn btn-lg btn-primary btn-block mb-4">Inicio</button>
-
+            <button className="btn btn-lg btn-primary btn-block mb-4">
+              Inicio
+            </button>
           </Link>
         </div>
-        <h1>Esse e o ranking</h1>
+        <h1>Ranking dos jogadores</h1>
         <table className="styled-table">
           <thead>
             <tr>

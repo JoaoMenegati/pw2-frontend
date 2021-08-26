@@ -13,6 +13,7 @@ function Fase1() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showAnswers, setShowAnswers] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [dificuldade, setDificuldade] = useState(0);
   const [nivel, setNivel] = useState(0);
   const [jogando, setJogando] = useState(false);
@@ -47,14 +48,26 @@ function Fase1() {
         //Aumenta a pontuação
         setScore(score + 1);
       }
-    }
 
+      setSelectedAnswer(answer);
+    }
+    
     setShowAnswers(true);
   };
 
   const handleNextQuestion = () => {
     setCurrentIndex(currentIndex + 1);
     setShowAnswers(false);
+    setSelectedAnswer(null);
+  }
+
+  const handleNewGame = () => {
+    setJogando(false);
+    setCurrentIndex(0);
+    setShowAnswers(false);
+    setSelectedAnswer(null);
+    setQuestions([]);
+    setScore(0);
   }
 
   const postPoints = () => {
@@ -68,19 +81,38 @@ function Fase1() {
       {currentIndex >= questions.length ? (
         <div className="container">
           <h1 className="text-3xl text-white font-bold mt-4">Sua pontuação e: {score * nivel}.</h1>
-          <Link to="/Inicio">
-            <button className="mr-4 btn btn-lg btn-primary btn-block">Inicio</button>
-          </Link>
-          <Link to="/ranking">
-            <button className="btn btn-lg btn-primary btn-block">Ranking</button>
-          </Link>
+          <div className="mt-10" />
+          <div className="card-grid col3">
+
+            <div className="card-container" onClick={handleNewGame}>
+              <span className="card-icon material-icons">play_arrow</span>
+              <span className="card-title">Jogar</span>
+            </div>
+
+            <Link to="/inicio">
+              <div className="card-container">
+                <span className="card-icon material-icons">weekend</span>
+                <span className="card-title">Inicio</span>
+              </div>
+            </Link>
+
+            <Link to="/ranking">
+              <div className="card-container">
+                <span className="card-icon material-icons">timeline</span>
+                <span className="card-title">Ranking</span>
+              </div>
+            </Link>
+          </div>
+
           {postPoints()}
         </div>
       ) : (
         <Questionario data={questions[currentIndex]}
           showAnswers={showAnswers}
           handleNextQuestion={handleNextQuestion}
-          handleAnswer={handleAnswer} />
+          handleAnswer={handleAnswer}
+          selectedAnswer={selectedAnswer}
+          />
       )}
     </div>
   ) : (
