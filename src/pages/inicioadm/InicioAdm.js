@@ -18,7 +18,7 @@ function InicioAdm() {
             <span className="card-title">Jogar</span>
           </div>
         </Link>
-        <Link to="/ranking">
+        <Link to="/ranking/1">
           <div className="card-container">
             <span className="card-icon material-icons">timeline</span>
             <span className="card-title">Ranking</span>

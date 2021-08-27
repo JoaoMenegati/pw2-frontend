@@ -21,7 +21,7 @@ function App() {
           <Route path="/cadastro" exact component={Cadastro} />
           <Route path="/inicio" exact component={Inicio} />
           <Route path="/inicioadm" exact component={InicioAdm} />
-          <Route path="/ranking" exact component={Ranking} />
+          <Route path="/ranking/:id" exact component={Ranking} />
           <Route path="/bancoquestoes" exact component={BancoQuestoes} />
           <Route path="/editarquestoes/:id" exact component={EditarQuestoes} />
         </Switch>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+
 import api from '../../Api';
 import '../../css/ranking.css';
-
 class Ranking extends Component {
 
   state = {
@@ -13,6 +14,8 @@ class Ranking extends Component {
   async componentDidMount() {
     const response = await api.get("/user/findall")
     this.setState({ ranking: response.data.users });
+    const { match: { params } } = this.props;
+    console.log(params)
   }
 
   renderTableData() {
@@ -33,38 +36,56 @@ class Ranking extends Component {
       const { name, surname, login, points } = user //destructuring
       return (
         <tr key={login}>
-          <td>{name}</td>
-          <td>{surname}</td>
-          <td>{points}</td>
+          <td className="cell100 column1">{name}</td>
+          <td className="cell100 column2">{surname}</td>
+          <td className="cell100 column3">{points}</td>
         </tr>
       )
     })
   }
 
   render() {
+    let id = this.props.match.params.id;
     return (
-      <div className="flex flex-col">
-        <div>
-          <Link to="/Inicio">
-            <button className="btn btn-lg btn-primary btn-block mb-4">
-              Inicio
-            </button>
-          </Link>
+      <div className="Ranking">
+        <div className="container">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to={(id) === 0 ? "/inicio" : "/inicioadm"}>Início</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>Ranking dos jogadores</BreadcrumbItem>
+          </Breadcrumb>
         </div>
-        <h1>Ranking dos jogadores</h1>
-        <table className="styled-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Pontos</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderTableData()}
-          </tbody>
-        </table>
+
+        <div className="limiter">
+          <div className="container-table100">
+            <div className="wrap-table100">
+              <div className="table100 ver1 m-b-110">
+                <div className="table100-head">
+                  <table>
+                    <thead>
+                      <tr className="row100 head">
+                        <th className="cell100 column1">Nome</th>
+                        <th className="cell100 column2">Sobrenome</th>
+                        <th className="cell100 column3">Pontos</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+
+                <div className="table100-body">
+                  <table>
+                    <tbody>
+                      {this.renderTableData()}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     );
   }
 }
