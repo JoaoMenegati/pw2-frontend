@@ -102,6 +102,23 @@ const Cadastro = () => {
                 <div className="formFieldInvalid">A senha é obrigatória.</div>
               )}
             </div>
+            <div className="row mb-3">
+              <label>Tipo do usuário</label>
+              <div className="input-group">
+                <select
+                  className="form-control chosen-select"
+                  {...register("admin", { required: true })}
+                  defaultValue={false}
+                >
+                  <option value="false">Comum</option>
+                  <option value="true">Administrador</option>
+                </select>
+              </div>
+
+              {errors.admin && (
+                <div className="formFieldInvalid">O tipo do usuário é obrigatório.</div>
+              )}
+            </div>
 
             <hr className="mb-4" />
             <button className="btn btn-primary btn-lg btn-block" type="submit">

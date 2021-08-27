@@ -105,7 +105,7 @@ const EditarQuestoes = () => {
                   defaultValue={currentQuestion.incorrectAnswers[0]}
                 />
               </div>
-              {errors.incorrectAnswer1 && (
+              {errors.incorrectAnswers && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -119,7 +119,7 @@ const EditarQuestoes = () => {
                 />
               </div>
 
-              {errors.incorrectAnswer2 && (
+              {errors.incorrectAnswers && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -133,7 +133,7 @@ const EditarQuestoes = () => {
                 />
               </div>
 
-              {errors.incorrectAnswer3 && (
+              {errors.incorrectAnswers && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -148,7 +148,7 @@ const EditarQuestoes = () => {
                 />
               </div>
 
-              {errors.incorrectAnswer4 && (
+              {errors.incorrectAnswers && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -167,7 +167,7 @@ const EditarQuestoes = () => {
                 </select>
               </div>
 
-              {errors.incorrectAnswer4 && (
+              {errors.dificulty && (
                 <div className="formFieldInvalid">A dificuldade da questão e obrigatória.</div>
               )}
             </div>

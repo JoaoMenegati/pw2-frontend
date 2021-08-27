@@ -63,7 +63,7 @@ const Login = () => {
         <Button color="primary" size="lg" type="submit" block>Entrar</Button>
 
         <div className="mb-4" />
-        <Link to="/cadastro">Não possui conta? cadastrar!</Link>
+        {/* <Link to="/cadastro">Não possui conta? cadastrar!</Link> */}
       </form>
     </div>
   );
