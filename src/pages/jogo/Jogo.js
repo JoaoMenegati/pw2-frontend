@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect, useParams } from "react-router-dom";
 import { Questionario } from './index';
 import Niveis from './Niveis';
 import api from '../../Api';
@@ -18,6 +18,8 @@ function Jogo() {
   const [nivel, setNivel] = useState(0);
   const [jogando, setJogando] = useState(false);
   const login = cookies.get('login');
+  let {id} = useParams();
+
   useEffect(() => {
     api.get("/question/find", {params: {dificulty: (dificuldade - 1)}})
       .then(response => response.data)
@@ -88,14 +90,14 @@ function Jogo() {
               <span className="card-title">Jogar</span>
             </div>
 
-            <Link to="/inicio">
+            <Link to={(id) === 0 ? "/inicio" : "/inicioadm"}>
               <div className="card-container">
                 <span className="card-icon material-icons">weekend</span>
                 <span className="card-title">Inicio</span>
               </div>
             </Link>
 
-            <Link to="/ranking">
+            <Link to={"/ranking/" + id}>
               <div className="card-container">
                 <span className="card-icon material-icons">timeline</span>
                 <span className="card-title">Ranking</span>
