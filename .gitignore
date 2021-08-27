@@ -2,6 +2,7 @@
 node_modules
 yarn.lock
 teste.js
+package-lock.json
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
