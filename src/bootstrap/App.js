@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./pages/login/Login";
-import Cadastro from "./pages/cadastro/Cadastro";
-import Quiz from "./Fase1";
-import Inicio from "./Inicio";
-import InicioAdm from "./InicioAdm";
-import Ranking from "./Ranking";
-import BancoQuestoes from "./pages/bancoquestoes/BancoQuestoes";
-import EditarQuestoes from "./pages/editarquestoes/EditarQuestoes";
+import Login from "../pages/login/Login";
+import Cadastro from "../pages/cadastro/Cadastro";
+import Quiz from "../pages/jogo/Jogo";
+import Inicio from "../pages/inicio/Inicio";
+import InicioAdm from "../pages/inicioadm/InicioAdm";
+import Ranking from "../pages/ranking/Ranking";
+import BancoQuestoes from "../pages/bancoquestoes/BancoQuestoes";
+import EditarQuestoes from "../pages/editarquestoes/EditarQuestoes";
 
-import './index.css';
+import '../css/index.css';
 
 function App() {
   return (

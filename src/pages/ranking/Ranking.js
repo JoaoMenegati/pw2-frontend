@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
-import api from './Api';
-import './css/ranking.css';
+import api from '../../Api';
+import '../../css/ranking.css';
 
 class Ranking extends Component {
 

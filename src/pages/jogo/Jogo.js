@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
-import { Questionario } from './components';
+import { Questionario } from './index';
 import Niveis from './Niveis';
-import api from './Api';
+import api from '../../Api';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const API_URL = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
-function Fase1() {
+function Jogo() {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -125,4 +125,4 @@ function Fase1() {
   );
 }
 
-export default Fase1;
+export default Jogo;
