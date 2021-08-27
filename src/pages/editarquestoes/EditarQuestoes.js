@@ -34,11 +34,13 @@ const EditarQuestoes = () => {
 
   const onSubmit = (values) => {
     console.log(values);
+    const { incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, incorrectAnswer4, ...data } = values;
+    const formValues = { ...data, incorrectAnswers: [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, incorrectAnswer4] };
     api
-      .post("/question/updateQuestions", values)
+      .post("/question/updateQuestions", formValues)
       .then((response) => {
         if (response.status === 200) {
-          history.push("/bancoquestoes");
+          history.go(-1);
         } else {
           alert("Falha ao atualizar questão!");
         }
@@ -74,10 +76,10 @@ const EditarQuestoes = () => {
                   {...register("question", { required: true })}
                   defaultValue={currentQuestion.question}
                 />
-                {errors.question && (
-                  <div className="formFieldInvalid">A questão é obrigatória.</div>
-                )}
               </div>
+              {errors.question && (
+                <div className="formFieldInvalid">A questão é obrigatória.</div>
+              )}
             </div>
             <div className="row mb-3">
               <label>Questão Correta</label>
@@ -88,12 +90,12 @@ const EditarQuestoes = () => {
                   {...register("correctAnswer", { required: true })}
                   defaultValue={currentQuestion.correctAnswer}
                 />
-                {errors.correctAnswer && (
-                  <div className="formFieldInvalid">
-                    A questão correta e obrigatória.
-                  </div>
-                )}
               </div>
+              {errors.correctAnswer && (
+                <div className="formFieldInvalid">
+                  A questão correta e obrigatória.
+                </div>
+              )}
             </div>
             <div className="row mb-3">
               <label>Questão incorreta 1</label>
@@ -101,11 +103,11 @@ const EditarQuestoes = () => {
                 <input
                   type="text"
                   className="form-control"
-                  {...register("incorrectAnswers[0]", { required: true })}
+                  {...register("incorrectAnswer1", { required: true })}
                   defaultValue={currentQuestion.incorrectAnswers[0]}
                 />
               </div>
-              {errors.incorrectAnswers && (
+              {errors.incorrectAnswer1 && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -114,12 +116,12 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswers[1]", { required: true })}
+                  {...register("incorrectAnswer2", { required: true })}
                   defaultValue={currentQuestion.incorrectAnswers[1]}
                 />
               </div>
 
-              {errors.incorrectAnswers && (
+              {errors.incorrectAnswer2 && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -128,12 +130,12 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswers[2]", { required: true })}
+                  {...register("incorrectAnswer3", { required: true })}
                   defaultValue={currentQuestion.incorrectAnswers[2]}
                 />
               </div>
 
-              {errors.incorrectAnswers && (
+              {errors.incorrectAnswer3 && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>
@@ -142,13 +144,13 @@ const EditarQuestoes = () => {
               <div className="input-group">
                 <input
                   className="form-control"
-                  {...register("incorrectAnswers[3]", { required: true })}
+                  {...register("incorrectAnswer4", { required: true })}
                   defaultValue={currentQuestion.incorrectAnswers[3]}
                   {...console.log(currentQuestion.incorrectAnswers)}
                 />
               </div>
 
-              {errors.incorrectAnswers && (
+              {errors.incorrectAnswer4 && (
                 <div className="formFieldInvalid">A questão incorreta e obrigatória.</div>
               )}
             </div>

@@ -26,8 +26,7 @@ function Jogo() {
           ...question,
           answers: [
             question.correctAnswer,
-            ...question.incorrectAnswers.slice(0, dificuldade),
-            question.dificulty
+            ...question.incorrectAnswers.slice(0, dificuldade)
           ].sort(() => Math.random() - 0.5)
         }))
 

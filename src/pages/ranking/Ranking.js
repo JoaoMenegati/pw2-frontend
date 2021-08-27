@@ -15,7 +15,7 @@ class Ranking extends Component {
     const response = await api.get("/user/findall")
     this.setState({ ranking: response.data.users });
     const { match: { params } } = this.props;
-    console.log(params)
+    //console.log(params)
   }
 
   renderTableData() {
@@ -45,13 +45,16 @@ class Ranking extends Component {
   }
 
   render() {
-    let id = this.props.match.params.id;
+    console.log(this.props.match.params.id);
+    let cLink = this.props.match.params.id === '0' ? "/inicio" : "/inicioadm";
+    console.log(cLink);
+
     return (
       <div className="Ranking">
         <div className="container">
           <Breadcrumb>
             <BreadcrumbItem>
-              <Link to={(id) === 0 ? "/inicio" : "/inicioadm"}>Início</Link>
+              <Link to={cLink}>Início</Link>
             </BreadcrumbItem>
             <BreadcrumbItem active>Ranking dos jogadores</BreadcrumbItem>
           </Breadcrumb>
